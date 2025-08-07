@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .workout-card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .workout-card h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Workouts</h1>
+
+    {% for workout in workouts %}
+    <div class="workout-card">
+        <h2>{{ workout.name }}</h2>
+        <p><strong>Benefits:</strong> {{ workout.benefits }}</p>
+        <p><strong>Instruction:</strong> {{ workout.instructions }}</p>
+    </div>
+    {% empty %}
+    <p>No workouts found.</p>
+    {% endfor %}
+
+    <p style="text-align:center;">
+        <a href="{% url 'home' %}">Back to Home</a>
+    </p>
+</body>
+</html>
