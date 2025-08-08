@@ -3,43 +3,181 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calisthenics Trainer</title>
+    <title>GymDude - Calisthenics Trainer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        header img {
+            width: 250px;
+            height: auto;
+        }
+
+        .about {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #f8f8f8;
+        }
+
+        .about h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 40px 20px;
+        }
+
+        .card {
+            width: 300px;
+            background-color: #f1f1f1;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+
+        .card-content a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #ff3c38;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .schedule {
+            background-color: #f8f8f8;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .schedule h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .schedule ul {
+            list-style: none;
+            padding: 0;
+            font-size: 1.1em;
+        }
+
+        .schedule li {
+            background-color: #e0e0e0;
+            margin: 10px auto;
+            max-width: 500px;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
-    <h1 style="text-align:center;">Welcome to GymDude</h1>
 
-    <section>
-        <h2>Explore workouts</h2>
-        <p>
-            Discover beginner-friendly calisthenics moves to build strength and flexibility at home.
-        </p>
-        <a href="{% url 'workouts' %}">View All workouts</a>
-    </section>
+<header>
+    <img src="{% static 'workouts/img/logo.png' %}" alt="GymDude Logo">
+</header>
 
-    <hr>
+<section class="about">
+    <h2>Welcome to GymDude</h2>
+    <p>
+        GymDude is your go-to destination for mastering calisthenics. Whether you're a beginner or a pro, our handpicked bodyweight workouts, step-by-step video tutorials, and optimized training schedules will help you build strength, flexibility, and endurance – right from home. No fancy equipment, just raw gains.
+    </p>
+</section>
 
-    <section>
-        <h2>Watch Tutorials</h2>
-        <p>
-            Learn proper form and technique with embedded YouTube videos for each exercise.
-        </p>
-        <a href="{% url 'workouts' %}">Watch Tutorials</a>
-    </section>
+<section class="cards-container">
+    <!-- Workout Card -->
+    <div class="card">
+        <img src="{% static 'workouts/img/man-plank.jpg' %}" alt="Explore Workouts">
+        <div class="card-content">
+            <h3>Explore Workouts</h3>
+            <p>Browse through beginner to advanced moves and build your perfect routine.</p>
+            <a href="{% url 'workouts' %}">Start Training</a>
+        </div>
+    </div>
 
-    <hr>
+    <!-- Signup Card -->
+    <div class="card">
+        <img src="{% static 'workouts/img/gym-membership.jpg' %}" alt="Join Now">
+        <div class="card-content">
+            <h3>Join GymDude</h3>
+            <p>Create your free account and unlock personalized training features.</p>
+            <a href="#">Coming Soon</a>
+        </div>
+    </div>
+</section>
 
-    <section>
-        <h2>Training Schedule</h2>
-        <p>Follow this 3-day cycle to build a balanced calisthenics foundation:</p>
-        <ul>
-            <li><strong>Day 1:</strong> Push (Push-ups, Dips)</li>
-            <li><strong>Day 2:</strong> Pull (Pull-ups, Body Rows)</li>
-            <li><strong>Day 3:</strong> Legs & Core (Squats, Planks)</li>
-        </ul>
-    </section>
+<section class="schedule">
+    <h2>Training Schedule</h2>
+    <ul>
+        <li><strong>Day 1:</strong> Push (Push-ups, Dips)</li>
+        <li><strong>Day 2:</strong> Pull (Pull-ups, Body Rows)</li>
+        <li><strong>Day 3:</strong> Legs & Core (Squats, Planks)</li>
+    </ul>
+</section>
 
-    <footer style="text-align:center; margin-top:40px;">
-        <p>&copy; 2025 GymDude</p>
-    </footer>
+<footer>
+    <p>&copy; 2025 GymDude. All rights reserved.</p>
+</footer>
+
 </body>
 </html>

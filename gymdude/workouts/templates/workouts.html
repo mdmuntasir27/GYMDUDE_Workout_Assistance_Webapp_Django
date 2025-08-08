@@ -1,44 +1,147 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Workout List</title>
+    <title>All Workouts</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
+        html, body {
+            height: 100%;
+            margin: 0;
         }
 
-        h1 {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .logo {
             text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo img {
+            height: 80px;
+        }
+
+        .banner img {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .workout-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
         }
 
         .workout-card {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
+            background: linear-gradient(145deg, #b2f1fb, #afafaf);
+            border-radius: 16px;
+            width: 250px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
-        .workout-card h2 {
-            margin-top: 0;
+        .workout-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(145deg, #d1e9fd, #c7f8f8);
+        }
+
+        .workout-card a {
+            text-decoration: none;
+            color: #222;
+            font-weight: bold;
+            font-size: 18px;
+            display: block;
+        }
+
+        .workout-card a:hover {
+            color: #007bff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .page-wrapper {
+            flex: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>All Workouts</h1>
 
-    {% for workout in workouts %}
-    <div class="workout-card">
-        <h2>{{ workout.name }}</h2>
-        <p><strong>Benefits:</strong> {{ workout.benefits }}</p>
-        <p><strong>Instruction:</strong> {{ workout.instructions }}</p>
+    <div class="container">
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="logo">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'workouts/img/logo.png' %}" alt="Logo">
+                    </a>
+                </div>
+
+                <div class="banner">
+                    <img src="{% static 'workouts/img/workout-banner.jpg' %}" alt="Workout Banner">
+                </div>
+
+                <div class="intro">
+                    <h2>Welcome to Calisthenics Training</h2>
+                    <p>
+                        Calisthenics is a form of strength training consisting of various bodyweight exercises. It improves flexibility, builds endurance, and enhances control over your body.
+                        Below is the list of workouts. Click on each to learn the instructions and watch a video tutorial.
+                    </p>
+                </div>
+
+                <div class="workout-list">
+                    {% for workout in workouts %}
+                    <div class="workout-card">
+                        <a href="{% url 'workout_detail' workout.id %}">💪 {{ workout.name }}</a>
+                    </div>
+                    {% empty %}
+                    <p>No workouts found.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
-    {% empty %}
-    <p>No workouts found.</p>
-    {% endfor %}
 
-    <p style="text-align:center;">
-        <a href="{% url 'home' %}">Back to Home</a>
-    </p>
+    <footer>
+        <p>&copy; 2025 GymDude. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
